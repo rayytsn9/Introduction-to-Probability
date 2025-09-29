@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     <script src="../../assets/js/dynamic-content.js" defer></script>
+    <script src="../../assets/js/theme-builder.js" defer></script>
 </head>
 <body>
     <!-- Hamburger Menu Button -->
@@ -21,9 +22,78 @@
     <nav class="sidebar-nav" id="sidebar">
         <div class="sidebar-header">
             <h2 class="sidebar-title">Math 180A</h2>
-            <button class="sidebar-close" aria-label="Close navigation">
-                <span class="close-icon">×</span>
-            </button>
+            <div class="sidebar-header-controls">
+                <div class="theme-selector">
+                    <button class="theme-toggle" id="themeToggle" title="Select theme">
+                        <span class="theme-current" id="currentTheme">VS Code Light+</span>
+                        <span class="theme-icon">🎨</span>
+                    </button>
+                    <div class="theme-dropdown" id="themeDropdown">
+                        <div class="theme-category">VS Code Themes</div>
+                        <div class="theme-option" data-theme="light" data-name="VS Code Light+">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #FFFFFF 50%, #007ACC 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">VS Code Light+</div>
+                                <div class="theme-description">Default VS Code light theme</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="dark-plus" data-name="VS Code Dark+">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #1E1E1E 50%, #007ACC 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">VS Code Dark+</div>
+                                <div class="theme-description">Default VS Code dark theme</div>
+                            </div>
+                        </div>
+                        
+                        <div class="theme-category">Popular Themes</div>
+                        <div class="theme-option" data-theme="monokai" data-name="Monokai">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #272822 50%, #66D9EF 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Monokai</div>
+                                <div class="theme-description">Classic syntax highlighting</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="dracula" data-name="Dracula">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #282A36 50%, #8BE9FD 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Dracula</div>
+                                <div class="theme-description">Modern purple/dark theme</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="nord" data-name="Nord">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #2E3440 50%, #88C0D0 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Nord</div>
+                                <div class="theme-description">Arctic-inspired palette</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="one-dark" data-name="One Dark Pro">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #282C34 50%, #61AFEF 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">One Dark Pro</div>
+                                <div class="theme-description">GitHub Atom-inspired</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="solarized-dark" data-name="Solarized Dark">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #002B36 50%, #268BD2 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Solarized Dark</div>
+                                <div class="theme-description">Scientifically balanced</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="material" data-name="Material">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #263238 50%, #89DDFF 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Material</div>
+                                <div class="theme-description">Google Material Design</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="sidebar-close" aria-label="Close navigation">
+                    <span class="close-icon">×</span>
+                </button>
+            </div>
         </div>
         <ul class="sidebar-nav-list">
             <!-- Navigation will be generated dynamically -->
@@ -203,6 +273,96 @@
                 <p><strong>A = {exactly two heads} = {HHT, HTH, THH}</strong></p>
                 
                 <p class="math">P(A) = P({HHT, HTH, THH}) = 3/8</p>
+
+                <hr class="separator">
+
+                <h3>Code Examples: Simulating Probability Spaces</h3>
+                
+                <div class="example-box">
+                    <h4>JavaScript Simulation</h4>
+                    <p>Here's how we might simulate a coin toss probability space:</p>
+                    <pre><code>// JavaScript simulation of coin toss
+function simulateCoinToss(trials = 1000) {
+    let heads = 0;
+    let tails = 0;
+    
+    for (let i = 0; i < trials; i++) {
+        const result = Math.random() < 0.5 ? 'H' : 'T';
+        if (result === 'H') heads++;
+        else tails++;
+    }
+    
+    console.log(`Heads: ${heads}, Tails: ${tails}`);
+    console.log(`P(H) ≈ ${heads/trials}, P(T) ≈ ${tails/trials}`);
+    
+    return { heads, tails };
+}
+
+// Run simulation
+const results = simulateCoinToss(10000);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>Python Implementation</h4>
+                    <p>Here's the same concept in Python with statistical analysis:</p>
+                    <pre><code>import random
+import matplotlib.pyplot as plt
+
+def simulate_coin_toss(trials=1000):
+    """Simulate coin tosses and calculate probabilities"""
+    heads = 0
+    tails = 0
+    
+    for _ in range(trials):
+        result = random.choice(['H', 'T'])
+        if result == 'H':
+            heads += 1
+        else:
+            tails += 1
+    
+    # Calculate empirical probabilities
+    p_heads = heads / trials
+    p_tails = tails / trials
+    
+    print(f"Trials: {trials}")
+    print(f"Heads: {heads} (P ≈ {p_heads:.4f})")
+    print(f"Tails: {tails} (P ≈ {p_tails:.4f})")
+    
+    return {'heads': heads, 'tails': tails, 'probabilities': [p_heads, p_tails]}
+
+# Example usage
+if __name__ == "__main__":
+    results = simulate_coin_toss(10000)
+    print(f"Theoretical P(H) = 0.5, Empirical P(H) = {results['probabilities'][0]:.4f}")</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>CSS for Probability Visualization</h4>
+                    <p>Here's how we might style probability visualizations:</p>
+                    <pre><code>/* CSS for probability bar charts */
+.probability-bar {
+    height: 20px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--radius-sm);
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.probability-bar:hover {
+    transform: scaleY(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+/* Animation for probability changes */
+@keyframes probabilityUpdate {
+    from { opacity: 0; transform: scaleX(0); }
+    to { opacity: 1; transform: scaleX(1); }
+}
+
+.probability-bar.updated {
+    animation: probabilityUpdate 0.5s ease-out;
+}</code></pre>
+                </div>
 
                 <hr class="separator">
 

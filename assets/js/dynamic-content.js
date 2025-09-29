@@ -16,14 +16,18 @@ class DynamicContentLoader {
             await this.loadContent();
             console.log('Content loaded successfully:', this.content);
             this.initializeSidebar();
+            this.initializeThemeToggle();
             this.generateSidebarNavigation();
             this.generateLectureCards();
             this.generateHomeworkCards();
+            this.highlightCodeBlocks();
             console.log('Dynamic content initialization complete');
         } catch (error) {
             console.error('Error loading dynamic content:', error);
-            // Still initialize sidebar even if content fails to load
+            // Still initialize sidebar and theme even if content fails to load
             this.initializeSidebar();
+            this.initializeThemeToggle();
+            this.highlightCodeBlocks();
         }
     }
 
@@ -95,6 +99,151 @@ class DynamicContentLoader {
         });
 
         console.log('Sidebar initialization complete');
+    }
+
+    initializeThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        const themeDropdown = document.getElementById('themeDropdown');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        const currentThemeName = localStorage.getItem('themeName') || 'VS Code Light+';
+
+        if (!themeToggle || !themeDropdown) {
+            console.log('Theme selector elements not found');
+            return;
+        }
+
+        // Set initial theme
+        this.setTheme(currentTheme, currentThemeName);
+
+        // Toggle dropdown
+        themeToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themeDropdown.classList.toggle('open');
+        });
+
+        // Handle theme selection
+        const themeOptions = themeDropdown.querySelectorAll('.theme-option');
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.dataset.theme;
+                const name = option.dataset.name;
+                this.setTheme(theme, name);
+                themeDropdown.classList.remove('open');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
+                themeDropdown.classList.remove('open');
+            }
+        });
+
+        // Keyboard navigation
+        themeToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                themeDropdown.classList.toggle('open');
+            }
+        });
+
+        console.log('Advanced theme selector initialized');
+    }
+
+    setTheme(theme, themeName) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        localStorage.setItem('themeName', themeName);
+        
+        // Update current theme display
+        const currentThemeElement = document.getElementById('currentTheme');
+        if (currentThemeElement) {
+            currentThemeElement.textContent = themeName;
+        }
+
+        // Update active state in dropdown
+        const themeOptions = document.querySelectorAll('.theme-option');
+        themeOptions.forEach(option => {
+            option.classList.toggle('active', option.dataset.theme === theme);
+        });
+
+        // Update theme icon based on theme type
+        const themeIcon = document.querySelector('.theme-icon');
+        if (themeIcon) {
+            if (theme === 'light') {
+                themeIcon.textContent = '☀️';
+            } else if (theme.includes('dark') || theme.includes('plus') || theme.includes('material') || theme.includes('solarized')) {
+                themeIcon.textContent = '🌙';
+            } else {
+                themeIcon.textContent = '🎨';
+            }
+        }
+        
+        console.log('Theme set to:', theme, '(', themeName, ')');
+    }
+
+    // Syntax highlighting for code blocks
+    highlightCodeBlocks() {
+        const codeBlocks = document.querySelectorAll('pre code');
+        
+        codeBlocks.forEach(block => {
+            const language = this.detectLanguage(block.textContent);
+            const highlightedCode = this.highlightSyntax(block.textContent, language);
+            
+            if (highlightedCode !== block.textContent) {
+                block.innerHTML = highlightedCode;
+            }
+            
+            // Add language indicator to pre element
+            const preElement = block.parentElement;
+            if (preElement && language) {
+                preElement.setAttribute('data-language', language);
+            }
+        });
+    }
+
+    detectLanguage(code) {
+        // Simple language detection based on common patterns
+        const patterns = {
+            javascript: [/\b(function|const|let|var|if|else|for|while|return)\b/, /=>/, /console\.log/, /\bclass\s+\w+/],
+            python: [/\bdef\s+\w+/, /\bimport\s+\w+/, /\bclass\s+\w+/, /\bif\s+__name__/, /\bprint\s*\(/],
+            java: [/\bpublic\s+class/, /\bprivate\s+\w+/, /\bpublic\s+static\s+void/, /\bSystem\.out\.print/],
+            cpp: [/#include/, /\bint\s+main\s*\(/, /\bstd::/, /\bcout\s*<</],
+            css: [/@media/, /\.\w+\s*{/, /\bcolor:\s*/, /\bmargin:\s*/],
+            html: [/<!DOCTYPE/, /<html/, /<head/, /<body/, /<div/]
+        };
+
+        for (const [lang, patterns] of Object.entries(patterns)) {
+            if (patterns.some(pattern => pattern.test(code))) {
+                return lang;
+            }
+        }
+        return 'text';
+    }
+
+    highlightSyntax(code, language) {
+        // Simple syntax highlighting using regex patterns
+        let highlighted = code;
+
+        // Common patterns for multiple languages
+        const patterns = {
+            keyword: /\b(function|const|let|var|if|else|for|while|return|class|import|def|public|private|static|void|int|string|bool|true|false|null|undefined|this|new|extends|implements)\b/g,
+            string: /(["'`])((?:\\.|(?!\1)[^\\])*?)\1/g,
+            comment: /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm,
+            number: /\b\d+\.?\d*\b/g,
+            function: /\b(\w+)\s*\(/g,
+            operator: /([+\-*/%=<>!&|^~]+)/g
+        };
+
+        // Apply highlighting
+        highlighted = highlighted.replace(patterns.keyword, '<span class="token keyword">$&</span>');
+        highlighted = highlighted.replace(patterns.string, '<span class="token string">$1$2$1</span>');
+        highlighted = highlighted.replace(patterns.comment, '<span class="token comment">$1</span>');
+        highlighted = highlighted.replace(patterns.number, '<span class="token number">$&</span>');
+        highlighted = highlighted.replace(patterns.function, '<span class="token function">$1</span>(');
+        highlighted = highlighted.replace(patterns.operator, '<span class="token operator">$1</span>');
+
+        return highlighted;
     }
 
     async loadContent() {

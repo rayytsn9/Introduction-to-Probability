@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="assets/js/dynamic-content.js" defer></script>
+    <script src="assets/js/theme-builder.js" defer></script>
 </head>
 <body>
     <!-- Hamburger Menu Button -->
@@ -20,9 +21,78 @@
     <nav class="sidebar-nav" id="sidebar">
         <div class="sidebar-header">
             <h2 class="sidebar-title">Math 180A</h2>
-            <button class="sidebar-close" aria-label="Close navigation">
-                <span class="close-icon">×</span>
-            </button>
+            <div class="sidebar-header-controls">
+                <div class="theme-selector">
+                    <button class="theme-toggle" id="themeToggle" title="Select theme">
+                        <span class="theme-current" id="currentTheme">VS Code Light+</span>
+                        <span class="theme-icon">🎨</span>
+                    </button>
+                    <div class="theme-dropdown" id="themeDropdown">
+                        <div class="theme-category">VS Code Themes</div>
+                        <div class="theme-option" data-theme="light" data-name="VS Code Light+">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #FFFFFF 50%, #007ACC 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">VS Code Light+</div>
+                                <div class="theme-description">Default VS Code light theme</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="dark-plus" data-name="VS Code Dark+">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #1E1E1E 50%, #007ACC 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">VS Code Dark+</div>
+                                <div class="theme-description">Default VS Code dark theme</div>
+                            </div>
+                        </div>
+                        
+                        <div class="theme-category">Popular Themes</div>
+                        <div class="theme-option" data-theme="monokai" data-name="Monokai">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #272822 50%, #66D9EF 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Monokai</div>
+                                <div class="theme-description">Classic syntax highlighting</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="dracula" data-name="Dracula">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #282A36 50%, #8BE9FD 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Dracula</div>
+                                <div class="theme-description">Modern purple/dark theme</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="nord" data-name="Nord">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #2E3440 50%, #88C0D0 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Nord</div>
+                                <div class="theme-description">Arctic-inspired palette</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="one-dark" data-name="One Dark Pro">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #282C34 50%, #61AFEF 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">One Dark Pro</div>
+                                <div class="theme-description">GitHub Atom-inspired</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="solarized-dark" data-name="Solarized Dark">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #002B36 50%, #268BD2 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Solarized Dark</div>
+                                <div class="theme-description">Scientifically balanced</div>
+                            </div>
+                        </div>
+                        <div class="theme-option" data-theme="material" data-name="Material">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #263238 50%, #89DDFF 50%);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Material</div>
+                                <div class="theme-description">Google Material Design</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="sidebar-close" aria-label="Close navigation">
+                    <span class="close-icon">×</span>
+                </button>
+            </div>
         </div>
         <ul class="sidebar-nav-list">
             <!-- Navigation will be generated dynamically -->

@@ -142,4 +142,40 @@ When you add new content:
 
 ---
 
-**Your website is now a fully dynamic, self-updating system!** 🎉
+## 🎨 **Advanced IDE Theme System**
+
+### **Theme Selector Features**
+- **🎨 Theme Button** - Click to open the theme dropdown
+- **8+ IDE Themes** - VS Code Light+/Dark+, Monokai, Dracula, Nord, One Dark Pro, Solarized Dark, Material
+- **Live Previews** - Each theme shows a color preview circle
+- **Descriptions** - Theme descriptions and categories
+- **Persistence** - Your theme choice is saved across sessions
+
+### **Custom Theme Builder**
+- **Color Picker** - Adjust background, surface, primary, text, and accent colors
+- **Live Preview** - See changes instantly as you adjust colors
+- **Save Themes** - Create and save your own custom themes
+- **Theme Management** - Import/export theme collections
+
+### **Syntax Highlighting**
+- **Automatic Detection** - Recognizes JavaScript, Python, Java, C++, CSS, HTML
+- **IDE Colors** - Uses exact VS Code color schemes for syntax highlighting
+- **Language Indicators** - Code blocks show the detected programming language
+- **Professional Styling** - Keywords, strings, comments, numbers all properly colored
+
+### **Theme Management**
+- **Export** - Download all your themes as a JSON file
+- **Import** - Upload theme collections from files
+- **History** - Track recently used themes for quick access
+- **Cross-Page** - Works consistently across all pages
+
+### **How to Use Themes**
+1. **Open Sidebar** - Click the hamburger menu (☰)
+2. **Access Theme Selector** - Click the theme button with current theme name
+3. **Choose Theme** - Click any theme option to apply it instantly
+4. **Build Custom Theme** - Use the Custom Theme Builder section
+5. **Manage Themes** - Import/export your theme collections
+
+---
+
+**Your website is now a fully dynamic, self-updating system with professional IDE themes!** 🎉

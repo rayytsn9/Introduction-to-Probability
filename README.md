@@ -107,22 +107,65 @@ The CSS uses a consistent design system with:
 
 ## 📱 Features
 
+### 🎨 **VS Code/Cursor IDE Theme System**
+- ✅ **8+ Professional IDE Themes** - VS Code Light+/Dark+, Monokai, Dracula, Nord, One Dark Pro, Solarized Dark, Material Design
+- ✅ **Advanced Theme Selector** - Dropdown with theme previews and descriptions
+- ✅ **Custom Theme Builder** - Live color picker with real-time preview
+- ✅ **Theme Management** - Import/export themes, theme history tracking
+- ✅ **IDE-Style Syntax Highlighting** - Automatic language detection with VS Code-accurate colors
+- ✅ **Language Indicators** - Code blocks show programming language
+
+### 🚀 **Core Features**
 - ✅ **Fully Dynamic System** - Automatically updates when you add content
 - ✅ **Modern Sidebar Navigation** - Clean hamburger menu with slide-out sidebar
 - ✅ **Always Available** - Navigation accessible from every page
 - ✅ **Responsive design** for mobile, tablet, and desktop
-- ✅ **Clean, academic styling** with professional appearance
+- ✅ **Clean, academic styling** with professional IDE aesthetics
 - ✅ **Easy navigation** between lectures and homework
 - ✅ **Mathematical expression formatting** with proper styling
 - ✅ **Organized file structure** that scales automatically
 - ✅ **Content management script** for easy updates
 - ✅ **PDF integration** with direct links to problem sets and solutions
 
+## 🎨 Theme System
+
+### **Built-in IDE Themes**
+The site includes 8 professional IDE themes that replicate popular VS Code/Cursor color schemes:
+
+1. **VS Code Light+** (default) - Clean, bright theme
+2. **VS Code Dark+** - Classic dark theme  
+3. **Monokai** - Vibrant syntax highlighting
+4. **Dracula** - Modern purple/dark theme
+5. **Nord** - Arctic-inspired palette
+6. **One Dark Pro** - GitHub Atom-inspired
+7. **Solarized Dark** - Scientifically balanced
+8. **Material** - Google Material Design
+
+### **Custom Theme Builder**
+- Click the theme selector in the sidebar
+- Use the **Custom Theme Builder** section
+- Adjust colors with live preview
+- Save your custom themes
+- Import/export theme collections
+
+### **Syntax Highlighting**
+- Automatic language detection for JavaScript, Python, Java, C++, CSS, HTML
+- IDE-accurate color schemes for keywords, strings, comments, numbers
+- Language indicators on code blocks
+- Seamless integration with all themes
+
+### **Theme Management**
+- **Export**: Download all themes as JSON
+- **Import**: Upload theme collections
+- **History**: Track recently used themes
+- **Persistence**: Themes saved across sessions
+
 ## 🔧 Customization
 
-- **Colors**: Edit CSS custom properties in `assets/css/styles.css`
+- **Colors**: Edit CSS custom properties in `assets/css/styles.css` or use the theme builder
 - **Fonts**: Change the Google Fonts import in HTML files
 - **Layout**: Modify the grid system in the CSS
+- **Themes**: Create custom themes using the built-in theme builder
 - **Navigation**: Update the nav structure in all HTML files
 
 ## 📚 Current Content
