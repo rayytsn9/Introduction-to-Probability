@@ -292,9 +292,10 @@ class DynamicContentLoader {
 
     createLectureCard(lecture) {
         const card = document.createElement('div');
-        card.className = 'lecture-card';
+        card.className = 'lecture-card panel';
         
         card.innerHTML = `
+            <div class="bar"></div>
             <div class="lecture-card-header">
                 <h3>Lecture ${lecture.id.replace('L', '')}</h3>
                 <span class="lecture-number">${lecture.id}</span>
@@ -314,9 +315,10 @@ class DynamicContentLoader {
 
     createComingSoonLectureCard(lectureNumber) {
         const card = document.createElement('div');
-        card.className = 'lecture-card coming-soon';
+        card.className = 'lecture-card coming-soon panel';
         
         card.innerHTML = `
+            <div class="bar"></div>
             <div class="lecture-card-header">
                 <h3>Lecture ${lectureNumber}</h3>
                 <span class="lecture-number">L${lectureNumber}</span>
@@ -390,7 +392,7 @@ class DynamicContentLoader {
 
     createHomeworkCard(hw) {
         const card = document.createElement('div');
-        card.className = 'homework-card';
+        card.className = 'homework-card panel';
         
         const psLink = hw.files.ps ? 
             `<a href="${hw.files.ps}" class="homework-link ps-link" target="_blank">Problem Set</a>` : '';
@@ -400,6 +402,7 @@ class DynamicContentLoader {
             `<a href="#" class="homework-link sol-link disabled">Solution (Coming Soon)</a>`;
         
         card.innerHTML = `
+            <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>${hw.title}</h3>
                 <span class="homework-number">${hw.id}</span>
@@ -418,7 +421,7 @@ class DynamicContentLoader {
 
     createDetailedHomeworkCard(hw) {
         const card = document.createElement('div');
-        card.className = 'homework-card';
+        card.className = 'homework-card panel';
         
         const psLink = hw.files.ps ? 
             `<a href="${hw.files.ps}" class="homework-link ps-link" target="_blank">
@@ -443,6 +446,7 @@ class DynamicContentLoader {
             </a>`;
         
         card.innerHTML = `
+            <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>${hw.title}</h3>
                 <span class="homework-number">${hw.id}</span>
@@ -466,9 +470,10 @@ class DynamicContentLoader {
 
     createComingSoonHomeworkCard(hwNumber) {
         const card = document.createElement('div');
-        card.className = 'homework-card coming-soon';
+        card.className = 'homework-card coming-soon panel';
         
         card.innerHTML = `
+            <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>Homework ${hwNumber}</h3>
                 <span class="homework-number">HW${hwNumber}</span>
@@ -484,9 +489,10 @@ class DynamicContentLoader {
 
     createComingSoonDetailedHomeworkCard(hwNumber) {
         const card = document.createElement('div');
-        card.className = 'homework-card coming-soon';
+        card.className = 'homework-card coming-soon panel';
         
         card.innerHTML = `
+            <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>Homework ${hwNumber}</h3>
                 <span class="homework-number">HW${hwNumber}</span>
