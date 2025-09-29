@@ -35,14 +35,16 @@
     <!-- Overlay for mobile -->
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <header class="header">
+    <header class="header panel">
+        <div class="bar"></div>
         <div class="container">
             <h1 class="header-title">Math 180A - Probability Theory</h1>
         </div>
     </header>
 
     <main class="main">
-        <div class="lecture-content">
+        <div class="lecture-content panel">
+            <div class="bar"></div>
             <div class="lecture-header">
                 <h1 class="lecture-title">Lecture 1: Probability Space</h1>
                 <p class="lecture-subtitle">Introduction to probability theory and Kolmogorov's axioms</p>
@@ -57,7 +59,8 @@
 
                 <h2>Motivating Example - Birthday Problem</h2>
                 
-                <div class="highlight-box">
+                <div class="highlight-box panel">
+                    <div class="bar"></div>
                     <h4>Question:</h4>
                     <p><strong>What is the minimum number of people needed in a group for there to be at least a 50% probability that two people share the same birthday?</strong></p>
                 </div>
@@ -80,7 +83,8 @@
                 <p class="math">P(at least one shared) = 1 - P(no shared)</p>
 
                 <h3>Answer</h3>
-                <div class="highlight-box">
+                <div class="highlight-box panel">
+                    <div class="bar"></div>
                     <h4>The minimum number of people needed is <strong>23</strong>.</h4>
                     <p>At n = 23, the probability of at least one shared birthday is approximately <strong>50.73%</strong>.</p>
                 </div>
@@ -94,7 +98,8 @@
                 
                 <p>A <strong>probability space</strong> is a mathematical construct that provides a formal framework for probability theory. It consists of three components:</p>
 
-                <div class="example-box">
+                <div class="example-box panel">
+                    <div class="bar"></div>
                     <h4>• Sample space (Ω):</h4>
                     <p>The set of all possible outcomes of a random experiment</p>
                     <ul>
@@ -103,7 +108,8 @@
                     </ul>
                 </div>
 
-                <div class="example-box">
+                <div class="example-box panel">
+                    <div class="bar"></div>
                     <h4>• Collection of events (F):</h4>
                     <p>A σ-algebra (sigma-algebra) of subsets of Ω</p>
                     <ul>
@@ -113,7 +119,8 @@
                     </ul>
                 </div>
 
-                <div class="example-box">
+                <div class="example-box panel">
+                    <div class="bar"></div>
                     <h4>• Probability measure (P):</h4>
                     <p>A function P: F → [0,1] that assigns probabilities to events</p>
                     <ul>
@@ -127,7 +134,8 @@
                 
                 <p>The probability measure P must satisfy these three axioms:</p>
 
-                <div class="highlight-box">
+                <div class="highlight-box panel">
+                    <div class="bar"></div>
                     <h4>i. Non-negativity:</h4>
                     <p class="math">P(A) ≥ 0 for all events A ∈ F</p>
                     
@@ -151,7 +159,8 @@
 
                 <h2>Example 1 - Flipping a Fair Coin</h2>
                 
-                <div class="example-box">
+                <div class="example-box panel">
+                    <div class="bar"></div>
                     <h4>Probability space (Ω, F, P):</h4>
                     
                     <p><strong>• Sample space:</strong> Ω = {H, T} (Heads, Tails)</p>
@@ -172,7 +181,8 @@
 
                 <h2>Example 2 - Rolling a Standard Six-Sided Die</h2>
                 
-                <div class="example-box">
+                <div class="example-box panel">
+                    <div class="bar"></div>
                     <h4>Probability space (Ω, F, P):</h4>
                     
                     <p><strong>• Sample space:</strong> Ω = {1, 2, 3, 4, 5, 6}</p>
@@ -191,7 +201,8 @@
 
                 <h2>Example 3 - Flipping a Fair Coin Three Times</h2>
                 
-                <div class="example-box">
+                <div class="example-box panel">
+                    <div class="bar"></div>
                     <h4>Probability space (Ω, F, P):</h4>
                     
                     <p><strong>• Sample space:</strong> Ω = {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}</p>
@@ -226,7 +237,8 @@
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer panel">
+        <div class="bar"></div>
         <div class="container">
             <p>&copy; 2024 Math 180A Probability Theory Notes</p>
         </div>

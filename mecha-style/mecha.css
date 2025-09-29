@@ -68,6 +68,37 @@ margin: 0 0 8px; letter-spacing:.06em; text-transform:uppercase; font-weight:700
 font-family: var(--font-display);
 color: var(--text);
 }
+.mecha-ui h4 {
+margin: 0 0 8px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+font-family: var(--font-display);
+color: var(--text);font-size: 1.1rem; color: var(--dim);
+}
+/* .mecha-ui p {
+color: var(--text);
+line-height: 1.5;
+margin: 0 0 1em;
+color: var(--dim);
+} */
+
+
+.mecha-ui .callout{
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35)), var(--panel);
+    border:1px solid var(--line);
+    border-radius: 14px;
+    padding:14px 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.28), inset 0 0 0 1px rgba(0,255,123,.08);
+    position:relative;
+}
+.mecha-ui .callout::before{
+    content:""; position:absolute; left:0; right:0; top:-1px; height:4px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2) 35%, var(--accent-3));
+    border-radius: 999px; filter: drop-shadow(0 0 6px var(--accent-2));
+}
+.mecha-ui .callout .k{ font-weight:800; letter-spacing:.06em; text-transform:uppercase }
+.mecha-ui .callout--answer .k{ color:var(--accent-2) }
+.mecha-ui .callout--warn::before{ background: linear-gradient(90deg, var(--lcl-orange), #ffb15a) }
+  
+
 
 /* Text dimmer */
 .mecha-ui .muted, .mecha-ui small, .mecha-ui .help { color: var(--dim); }
