@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MECHA UI • EVA x GUNDAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* === THEME TOKENS (tweak these) ============================== */
+:root{
+  /* Palette — Evangelion */
+  --eva-purple:#5b2cff;
+  --eva-green:#00ff7b;
+  --lcl-orange:#ff6a00;
+
+  /* Palette — Gundam RX-78 */
+  --gn-blue:#0a67ff;
+  --gn-red:#ff2a3d;
+  --gn-yellow:#ffd300;
+  --mech-gray:#0e1116;
+  --mech-ink:#131721;
+  --mech-panel:#1b2130;
+  --mech-line:#2a3448;
+  --mech-text:#dbe6ff;
+  --mech-dim:#96a3c7;
+
+  /* Effects */
+  --glow-strong:0 0 12px;
+  --glow-soft:0 0 6px;
+  --radius:18px;
+  --bevel:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -1px 0 rgba(0,0,0,.5);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --grid-color:rgba(123, 143, 221, .08);
+  --scanline:rgba(255,255,255,.03);
+
+  /* Type */
+  --font-display:"Orbitron", system-ui, sans-serif;
+  --font-body:"Rajdhani", system-ui, sans-serif;
+  --letter-wide:.04em;
+
+  /* Accents (swap sets to shift “faction”) */
+  --accent-1:var(--eva-purple);
+  --accent-2:var(--eva-green);
+  --accent-3:var(--gn-yellow);
+  --accent-danger:var(--gn-red);
+}
+
+/* === GLOBAL =================================================== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--mech-text); background:radial-gradient(1200px 800px at 10% -10%, rgba(90,110,180,.15), transparent 60%),
+  radial-gradient(900px 600px at 110% 110%, rgba(0,255,123,.08), transparent 60%),
+  var(--mech-ink);
+  font-family:var(--font-body); letter-spacing:.01em;
+  /* Subtle scanlines */
+  background-image:
+    linear-gradient(transparent 97%, var(--scanline) 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 3px),
+    radial-gradient(1200px 800px at 10% -10%, rgba(90,110,180,.15), transparent 60%),
+    radial-gradient(900px 600px at 110% 110%, rgba(0,255,123,.08), transparent 60%),
+    linear-gradient(120deg, #0b0f18, #0c121d 30%, #0b0f18 70%);
+  background-size: 100% 3px, 100% 4px, auto, auto, auto;
+}
+
+/* Hex grid overlay */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.25;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 20px, var(--grid-color) 21px 22px, transparent 23px) 0 0/40px 34px,
+    linear-gradient(var(--grid-color) 1px, transparent 1px) 0 0/100% 34px;
+  mix-blend-mode:soft-light;
+}
+
+/* Page layout */
+.container{max-width:1100px; margin:64px auto; padding:0 20px}
+.header{
+  display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:24px;
+}
+.brand{
+  display:flex; align-items:center; gap:14px; text-transform:uppercase;
+  font-family:var(--font-display); letter-spacing:.08em;
+}
+.logo{
+  width:46px; height:46px; border-radius:12px;
+  background: conic-gradient(from 90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
+  box-shadow: var(--glow-soft) var(--accent-2);
+  position:relative;
+}
+.logo::after{
+  content:"N"; position:absolute; inset:0; display:grid; place-items:center;
+  color:#0a0e16; font-weight:800;
+}
+
+/* Nav — mecha tabs */
+.nav{
+  display:flex; gap:10px; flex-wrap:wrap; font-family:var(--font-display); letter-spacing:var(--letter-wide);
+}
+.tab{
+  position:relative; padding:10px 14px; border:1px solid var(--mech-line); color:var(--mech-dim);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2));
+  border-radius:12px; box-shadow:var(--bevel);
+  transition:.2s ease; text-decoration:none;
+}
+.tab:hover{ color:var(--mech-text); border-color:var(--accent-2); box-shadow:0 0 0 2px rgba(0,255,123,.15)}
+.tab.is-active{
+  color:#081015; background:linear-gradient(180deg, var(--accent-2), #0affc7);
+  border-color:transparent; text-shadow:0 0 10px rgba(0,0,0,.25);
+}
+
+/* Panels */
+.grid{
+  display:grid; gap:18px; grid-template-columns: repeat(12, 1fr);
+}
+.panel{
+  grid-column: span 12; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35)), var(--mech-panel);
+  border:1px solid var(--mech-line); border-radius:var(--radius); padding:18px;
+  box-shadow:var(--shadow), var(--bevel); position:relative; overflow:hidden;
+}
+.panel::before{
+  /* angled seam */
+  content:""; position:absolute; inset:0; background:
+    linear-gradient(135deg, transparent 0 48%, rgba(255,255,255,.04) 49%, rgba(0,0,0,.1) 50%, transparent 51%);
+  pointer-events:none; opacity:.35;
+}
+.panel h2{
+  margin:0 0 10px; font-family:var(--font-display); letter-spacing:.08em; font-weight:700;
+  text-transform:uppercase; font-size:14px; color:var(--mech-dim);
+}
+
+/* Accent header bar */
+.panel .bar{
+  height:3px; background:
+    linear-gradient(90deg, var(--accent-1), var(--accent-2) 40%, var(--accent-3));
+  margin:-18px -18px 12px; box-shadow:var(--glow-soft) var(--accent-2);
+}
+
+/* HUD chips */
+.chips{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 2px}
+.chip{
+  font-family:var(--font-display); letter-spacing:.06em; font-size:11px; padding:6px 8px;
+  border:1px dashed var(--mech-line); color:var(--mech-dim); border-radius:8px;
+}
+.chip--ok{border-style:solid; color:#081015; background:linear-gradient(180deg, var(--accent-2), #46ffc1)}
+.chip--warn{border-style:solid; color:#0f0a0a; background:linear-gradient(180deg, var(--lcl-orange), #ff9740)}
+.chip--crit{border-style:solid; color:#120808; background:linear-gradient(180deg, var(--accent-danger), #ff6270)}
+
+/* Buttons */
+.btn{
+  appearance:none; border:none; padding:10px 14px; font-family:var(--font-display);
+  letter-spacing:.08em; border-radius:12px; cursor:pointer; transition:.15s ease;
+  background:linear-gradient(180deg, #2a3550, #1b2233); color:var(--mech-text); border:1px solid var(--mech-line);
+  box-shadow:var(--bevel);
+}
+.btn:hover{ transform:translateY(-1px); box-shadow:0 8px 16px rgba(0,0,0,.35)}
+.btn--primary{
+  background:linear-gradient(180deg, var(--accent-1), #3620d9);
+  border-color:transparent; color:white; text-shadow:0 1px 0 rgba(0,0,0,.4);
+  box-shadow: var(--glow-strong) var(--accent-1);
+}
+.btn--green{
+  background:linear-gradient(180deg, var(--accent-2), #0bcf8a);
+  border-color:transparent; color:#04110c; text-shadow:0 1px 0 rgba(255,255,255,.2);
+  box-shadow: var(--glow-strong) var(--accent-2);
+}
+
+/* Warning banner */
+.warning{
+  display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px;
+  background:repeating-linear-gradient(45deg, #1c1208, #1c1208 10px, #321c08 10px, #321c08 20px);
+  border:1px solid #4d2b06; box-shadow:0 0 0 2px rgba(255,106,0,.12) inset;
+  color:#ffd8b4; font-weight:600;
+}
+.warning .tag{
+  font-family:var(--font-display); letter-spacing:.08em; font-size:11px; padding:4px 8px; border-radius:6px;
+  background:linear-gradient(180deg, var(--lcl-orange), #ff9a3c); color:#1b0f07;
+}
+
+/* Stat rows */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+.stat{
+  background:linear-gradient(180deg, #212a3b, #1a2030); border:1px solid var(--mech-line); border-radius:12px; padding:10px;
+}
+.stat .k{ font-family:var(--font-display); font-size:20px; letter-spacing:.06em}
+.stat .l{ font-size:11px; color:var(--mech-dim); text-transform:uppercase; letter-spacing:.1em}
+
+/* Progress / bars */
+.barline{height:8px; border-radius:99px; background:#121827; border:1px solid var(--mech-line); overflow:hidden}
+.barline>span{display:block; height:100%; background:linear-gradient(90deg, var(--accent-2), var(--accent-1)); width:62%}
+
+/* Code-style panel */
+.terminal{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background:#0a0e16; border:1px solid #1c2436; color:#9ad6c1; border-radius:12px; padding:12px;
+  box-shadow: inset 0 0 0 1px rgba(0,255,123,.12);
+}
+.prompt{color:#46ffc1}
+
+/* Responsive */
+@media (min-width:800px){
+  .panel.span-6{grid-column: span 6}
+  .panel.span-8{grid-column: span 8}
+  .panel.span-4{grid-column: span 4}
+}
+
+/* Micro interactions */
+@keyframes glowPulse{
+  0%,100%{ box-shadow: var(--glow-soft) var(--accent-2)}
+  50%{ box-shadow: 0 0 14px var(--accent-2)}
+}
+.pulse{ animation: glowPulse 1.8s infinite ease-in-out }
+
+/* Utility */
+.m0{margin:0}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt20{margin-top:20px}
+.flex{display:flex}.gap8{gap:8px}.right{margin-left:auto}
+.small{font-size:12px; color:var(--mech-dim)}
+.hr{height:1px; background:linear-gradient(90deg, transparent, #2a3448, transparent); margin:10px 0}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo pulse" aria-hidden="true"></div>
+        <div>
+          <div style="font-weight:700">NERV // RX-78 OPS</div>
+          <div class="small">Operation Console v1.0</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a class="tab is-active" href="#">Dashboard</a>
+        <a class="tab" href="#">Hangar</a>
+        <a class="tab" href="#">Loadout</a>
+        <a class="tab" href="#">Missions</a>
+      </nav>
+    </header>
+
+    <section class="grid">
+      <div class="panel span-8">
+        <div class="bar"></div>
+        <h2>Unit Status — EVA-01</h2>
+        <div class="chips">
+          <div class="chip chip--ok">SYNC OK</div>
+          <div class="chip">CORE TEMP: 62°C</div>
+          <div class="chip chip--warn">LCL PRESSURE HIGH</div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="stats mt12">
+          <div class="stat">
+            <div class="l">battery</div>
+            <div class="k">87%</div>
+            <div class="barline mt8"><span style="width:87%"></span></div>
+          </div>
+          <div class="stat">
+            <div class="l">sync ratio</div>
+            <div class="k" style="color:var(--accent-2)">71%</div>
+            <div class="barline mt8"><span style="width:71%"></span></div>
+          </div>
+          <div class="stat">
+            <div class="l">armament</div>
+            <div class="k" style="color:var(--accent-1)">PALLETE RIFLE</div>
+          </div>
+        </div>
+
+        <div class="mt16 flex gap8">
+          <button class="btn btn--primary">ENGAGE</button>
+          <button class="btn btn--green">SAFE MODE</button>
+          <button class="btn">DIAGNOSTICS</button>
+          <span class="right small">LAST CHECK: T-00:14</span>
+        </div>
+      </div>
+
+      <div class="panel span-4">
+        <div class="bar"></div>
+        <h2>Mission Feed</h2>
+        <div class="warning mt8">
+          <span class="tag">WARNING</span>
+          A.T. Field anomaly detected in Sector-7. Prepare intercept window.
+        </div>
+
+        <div class="terminal mt12">
+          <div><span class="prompt">ops@bridge</span>:~$ route-plan --sector 7</div>
+          <div>→ ETA: 03:42 • Weather: CLEAR • Threat: CLASS-C</div>
+          <div>→ Loadout: PALLETE-RIFLE | PROG-KNIFE | EVA-UMBRELLA</div>
+        </div>
+
+        <div class="mt12 flex gap8">
+          <button class="btn">QUEUE</button>
+          <button class="btn">SHARE LINK</button>
+        </div>
+      </div>
+
+      <div class="panel span-6">
+        <div class="bar"></div>
+        <h2>Loadout — RX-78</h2>
+        <div class="chips">
+          <div class="chip">BEAM SABER ×2</div>
+          <div class="chip">BEAM RIFLE</div>
+          <div class="chip">SHIELD</div>
+          <div class="chip chip--crit">AMMO LOW</div>
+        </div>
+        <p class="small mt8">Tip: swap the accent tokens in <code>:root</code> to flip between EVA or Gundam moods.</p>
+      </div>
+
+      <div class="panel span-6">
+        <div class="bar"></div>
+        <h2>Theme Switch</h2>
+        <div class="flex gap8 mt8">
+          <button class="btn" onclick="
+            document.documentElement.style.setProperty('--accent-1', getComputedStyle(document.documentElement).getPropertyValue('--eva-purple'));
+            document.documentElement.style.setProperty('--accent-2', getComputedStyle(document.documentElement).getPropertyValue('--eva-green'));
+            document.documentElement.style.setProperty('--accent-3', getComputedStyle(document.documentElement).getPropertyValue('--gn-yellow'));
+          ">EVA-01</button>
+          <button class="btn" onclick="
+            document.documentElement.style.setProperty('--accent-1', getComputedStyle(document.documentElement).getPropertyValue('--gn-blue'));
+            document.documentElement.style.setProperty('--accent-2', getComputedStyle(document.documentElement).getPropertyValue('--gn-yellow'));
+            document.documentElement.style.setProperty('--accent-3', getComputedStyle(document.documentElement).getPropertyValue('--gn-red'));
+          ">RX-78</button>
+          <button class="btn" onclick="
+            document.documentElement.style.setProperty('--accent-1','#9b59ff');
+            document.documentElement.style.setProperty('--accent-2','#33e6ff');
+            document.documentElement.style.setProperty('--accent-3','#ff3af2');
+          ">NEON</button>
+        </div>
+        <p class="small mt12">You can also bind these tokens to a real settings panel or CSS class toggle.</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

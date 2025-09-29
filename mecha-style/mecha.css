@@ -1,0 +1,127 @@
+/* ===== MECHA THEME (Scoped) ===================================== */
+.mecha-ui {
+    /* Tokens */
+    --eva-purple:#5b2cff; --eva-green:#00ff7b; --lcl-orange:#ff6a00;
+    --gn-blue:#0a67ff; --gn-red:#ff2a3d; --gn-yellow:#ffd300;
+  
+    --accent-1: var(--eva-purple);
+    --accent-2: var(--eva-green);
+    --accent-3: var(--gn-yellow);
+    --danger: var(--gn-red);
+  
+    --ink:#131721; --panel:#1b2130; --line:#2a3448; --text:#dbe6ff; --dim:#96a3c7;
+  
+    --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --grid: rgba(123,143,221,.08); --scan: rgba(255,255,255,.03);
+    
+    /* Fonts */
+    --font-display: "Orbitron", system-ui, sans-serif;
+    --font-body: "Rajdhani", system-ui, sans-serif;
+    --letter-wide: .04em;
+  }
+  
+/* Background + scanlines + subtle hex */
+.mecha-ui {
+color: var(--text);
+font-family: var(--font-body);
+letter-spacing: .01em;
+background:
+    linear-gradient(120deg, #0b0f18, #0c121d 30%, #0b0f18 70%);
+position: relative;
+}
+.mecha-ui::before, .mecha-ui::after{
+content:""; position:absolute; inset:0; pointer-events:none;
+}
+.mecha-ui::before{
+background-image:
+    linear-gradient(transparent 97%, var(--scan) 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scan) 3px);
+background-size:100% 3px, 100% 4px;
+opacity:.6;
+}
+.mecha-ui::after{
+background:
+    radial-gradient(circle, transparent 0 20px, var(--grid) 21px 22px, transparent 23px) 0 0/40px 34px,
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 34px;
+mix-blend-mode:soft-light; opacity:.25;
+}
+
+/* Panels (apply to any container you already have) */
+.mecha-ui .panel, .mecha-ui .card, .mecha-ui .box, .mecha-ui section, .mecha-ui aside {
+background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35)), var(--panel);
+border:1px solid var(--line);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+padding: 16px;
+position: relative;
+overflow: hidden;
+}
+.mecha-ui .panel .bar, .mecha-ui .card .bar, .mecha-ui .box .bar{
+height:3px; margin:-16px -16px 12px;
+background: linear-gradient(90deg, var(--accent-1), var(--accent-2) 40%, var(--accent-3));
+box-shadow: 0 0 6px var(--accent-2);
+}
+
+/* Headings */
+.mecha-ui h1, .mecha-ui h2, .mecha-ui h3 {
+margin: 0 0 8px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+font-family: var(--font-display);
+color: var(--text);
+}
+
+/* Text dimmer */
+.mecha-ui .muted, .mecha-ui small, .mecha-ui .help { color: var(--dim); }
+
+/* Buttons (applies to <button>, .btn, and <a> that look like buttons) */
+.mecha-ui button, 
+.mecha-ui .btn,
+.mecha-ui a.btn,
+.mecha-ui input[type="button"],
+.mecha-ui input[type="submit"]{
+appearance:none; border:1px solid var(--line); background:linear-gradient(180deg, #2a3550, #1b2233);
+color:var(--text); padding:10px 14px; border-radius:12px; cursor:pointer; transition:.15s ease; display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+}
+.mecha-ui button:hover, .mecha-ui .btn:hover, .mecha-ui a.btn:hover { transform:translateY(-1px); box-shadow:0 8px 16px rgba(0,0,0,.35) }
+
+.mecha-ui .btn-primary{ background:linear-gradient(180deg, var(--accent-1), #3720da); border-color:transparent; color:#fff; text-shadow:0 1px 0 rgba(0,0,0,.4) }
+.mecha-ui .btn-green{ background:linear-gradient(180deg, var(--accent-2), #0bcf8a); border-color:transparent; color:#07130d }
+
+/* Tabs / nav links (just add .tab to your existing nav items) */
+.mecha-ui .tab{
+padding:10px 14px; border:1px solid var(--line); border-radius:12px; color:var(--dim);
+background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2)); text-decoration:none; display:inline-block; transition:.2s ease;
+}
+.mecha-ui .tab:hover{ color:var(--text); border-color:var(--accent-2); box-shadow:0 0 0 2px rgba(0,255,123,.15) }
+.mecha-ui .tab.is-active{ color:#081015; background:linear-gradient(180deg, var(--accent-2), #0affc7); border-color:transparent; }
+
+/* Labels / chips */
+.mecha-ui .chip{
+display:inline-block; font-size:.8rem; padding:6px 8px; border:1px dashed var(--line); color:var(--dim); border-radius:8px; margin:2px 6px 2px 0;
+}
+.mecha-ui .chip.ok{ border-style:solid; background:linear-gradient(180deg, var(--accent-2), #46ffc1); color:#081015 }
+.mecha-ui .chip.warn{ border-style:solid; background:linear-gradient(180deg, var(--lcl-orange), #ff9740); color:#1b0f07 }
+.mecha-ui .chip.crit{ border-style:solid; background:linear-gradient(180deg, var(--danger), #ff6270); color:#120808 }
+
+/* Progress bar (wrap any .barline > span with width %) */
+.mecha-ui .barline{ height:8px; border-radius:99px; background:#121827; border:1px solid var(--line); overflow:hidden }
+.mecha-ui .barline > span{ display:block; height:100%; background:linear-gradient(90deg, var(--accent-2), var(--accent-1)); width:50% }
+
+/* Tables (light reskin if you already use tables) */
+.mecha-ui table{ width:100%; border-collapse:collapse; border:1px solid var(--line); background:rgba(0,0,0,.15) }
+.mecha-ui th, .mecha-ui td{ border-top:1px solid var(--line); padding:10px }
+.mecha-ui th{ text-align:left; color:var(--dim); font-weight:600; text-transform:uppercase; letter-spacing:.06em }
+.mecha-ui tr:hover td{ background:rgba(0,255,123,.05) }
+
+/* Forms */
+.mecha-ui input[type="text"], .mecha-ui input[type="email"], .mecha-ui input[type="password"], .mecha-ui select, .mecha-ui textarea{
+background:#0a0e16; color:var(--text); border:1px solid #1c2436; border-radius:10px; padding:10px 12px; width:100%;
+box-shadow: inset 0 0 0 1px rgba(0,255,123,.12);
+}
+.mecha-ui input:focus, .mecha-ui select:focus, .mecha-ui textarea:focus{ outline:none; border-color:var(--accent-2); box-shadow:0 0 0 2px rgba(0,255,123,.18) }
+
+/* Utilities */
+.mecha-ui .row{ display:flex; gap:12px; flex-wrap:wrap }
+.mecha-ui .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px }
+.mecha-ui .stat{ background:linear-gradient(180deg, #212a3b, #1a2030); border:1px solid var(--line); border-radius:12px; padding:10px }
+.mecha-ui .stat .k{ font-weight:700; font-size:1.15rem }
+.mecha-ui .stat .l{ font-size:.75rem; color:var(--dim); text-transform:uppercase; letter-spacing:.08em }
