@@ -1,0 +1,49 @@
+{
+  "course": {
+    "title": "Math 180A - Probability Theory",
+    "description": "A comprehensive collection of lecture notes and homework assignments"
+  },
+  "lectures": [
+    {
+      "id": "L1",
+      "title": "Probability Space",
+      "subtitle": "Introduction to probability theory and Kolmogorov's axioms",
+      "topics": [
+        "Birthday Problem",
+        "Probability Space (Ω, F, P)",
+        "Kolmogorov's Axioms",
+        "Coin Flipping Examples",
+        "Die Rolling Examples"
+      ],
+      "files": {
+        "html": "lectures/L1/L1.html",
+        "markdown": "lectures/L1/L1.md",
+        "pdf": "lectures/L1/Lecture_1.pdf"
+      },
+      "available": true
+    }
+  ],
+  "homework": [
+    {
+      "id": "HW1",
+      "title": "Homework 1",
+      "description": "Problem set covering probability spaces and basic probability concepts",
+      "topics": [
+        "Probability Spaces (Ω, F, P)",
+        "Kolmogorov's Axioms",
+        "Basic Probability Calculations",
+        "Coin Flipping and Die Rolling"
+      ],
+      "files": {
+        "ps": "homework/ps/Homework_1_ps.pdf",
+        "sol": null
+      },
+      "available": true
+    }
+  ],
+  "navigation": {
+    "showComingSoon": true,
+    "maxLectures": 5,
+    "maxHomework": 10
+  }
+}
