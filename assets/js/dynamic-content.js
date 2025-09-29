@@ -200,7 +200,7 @@ class DynamicContentLoader {
         li.className = 'sidebar-nav-item';
         
         const link = document.createElement('a');
-        link.className = isActive ? 'sidebar-nav-link active' : 'sidebar-nav-link';
+        link.className = isActive ? 'sidebar-nav-link active tab is-active' : 'sidebar-nav-link tab';
         link.href = this.getCorrectPath(href);
         link.textContent = text;
         
@@ -210,7 +210,7 @@ class DynamicContentLoader {
 
     createSidebarDropdownLink(text, href, isActive, isDisabled = false) {
         const link = document.createElement('a');
-        link.className = isDisabled ? 'sidebar-dropdown-item disabled' : (isActive ? 'sidebar-dropdown-item active' : 'sidebar-dropdown-item');
+        link.className = isDisabled ? 'sidebar-dropdown-item disabled tab' : (isActive ? 'sidebar-dropdown-item active tab is-active' : 'sidebar-dropdown-item tab');
         link.href = this.getCorrectPath(href);
         link.textContent = text;
         
@@ -298,7 +298,7 @@ class DynamicContentLoader {
             <div class="bar"></div>
             <div class="lecture-card-header">
                 <h3>Lecture ${lecture.id.replace('L', '')}</h3>
-                <span class="lecture-number">${lecture.id}</span>
+                <span class="chip ok">${lecture.id}</span>
             </div>
             <div class="lecture-card-content">
                 <h4>${lecture.title}</h4>
@@ -306,7 +306,7 @@ class DynamicContentLoader {
                 <ul class="lecture-topics">
                     ${lecture.topics.map(topic => `<li>${topic}</li>`).join('')}
                 </ul>
-                <a href="${lecture.files.html}" class="lecture-link">Read ${lecture.id}</a>
+                <a href="${lecture.files.html}" class="lecture-link btn btn-primary">Read ${lecture.id}</a>
             </div>
         `;
         
@@ -321,12 +321,12 @@ class DynamicContentLoader {
             <div class="bar"></div>
             <div class="lecture-card-header">
                 <h3>Lecture ${lectureNumber}</h3>
-                <span class="lecture-number">L${lectureNumber}</span>
+                <span class="chip ok">L${lectureNumber}</span>
             </div>
             <div class="lecture-card-content">
                 <h4>Coming Soon</h4>
                 <p>This lecture will be added soon.</p>
-                <div class="coming-soon-badge">Coming Soon</div>
+                <span class="chip warn">Coming Soon</span>
             </div>
         `;
         
@@ -395,17 +395,17 @@ class DynamicContentLoader {
         card.className = 'homework-card panel';
         
         const psLink = hw.files.ps ? 
-            `<a href="${hw.files.ps}" class="homework-link ps-link" target="_blank">Problem Set</a>` : '';
+            `<a href="${hw.files.ps}" class="homework-link ps-link btn" target="_blank">Problem Set</a>` : '';
         
         const solLink = hw.files.sol ? 
-            `<a href="${hw.files.sol}" class="homework-link sol-link" target="_blank">Solution</a>` :
-            `<a href="#" class="homework-link sol-link disabled">Solution (Coming Soon)</a>`;
+            `<a href="${hw.files.sol}" class="homework-link sol-link btn" target="_blank">Solution</a>` :
+            `<a href="#" class="homework-link sol-link btn disabled">Solution (Coming Soon)</a>`;
         
         card.innerHTML = `
             <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>${hw.title}</h3>
-                <span class="homework-number">${hw.id}</span>
+                <span class="chip ok">${hw.id}</span>
             </div>
             <div class="homework-card-content">
                 <p>${hw.description}</p>
@@ -424,7 +424,7 @@ class DynamicContentLoader {
         card.className = 'homework-card panel';
         
         const psLink = hw.files.ps ? 
-            `<a href="${hw.files.ps}" class="homework-link ps-link" target="_blank">
+            `<a href="${hw.files.ps}" class="homework-link ps-link btn" target="_blank">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                 </svg>
@@ -432,13 +432,13 @@ class DynamicContentLoader {
             </a>` : '';
         
         const solLink = hw.files.sol ? 
-            `<a href="${hw.files.sol}" class="homework-link sol-link" target="_blank">
+            `<a href="${hw.files.sol}" class="homework-link sol-link btn" target="_blank">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
                 </svg>
                 Solution
             </a>` :
-            `<a href="#" class="homework-link sol-link disabled">
+            `<a href="#" class="homework-link sol-link btn disabled">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
                 </svg>
@@ -449,7 +449,7 @@ class DynamicContentLoader {
             <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>${hw.title}</h3>
-                <span class="homework-number">${hw.id}</span>
+                <span class="chip ok">${hw.id}</span>
             </div>
             <div class="homework-card-content">
                 <div class="homework-info">
@@ -476,11 +476,11 @@ class DynamicContentLoader {
             <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>Homework ${hwNumber}</h3>
-                <span class="homework-number">HW${hwNumber}</span>
+                <span class="chip ok">HW${hwNumber}</span>
             </div>
             <div class="homework-card-content">
                 <p>This homework will be added soon.</p>
-                <div class="coming-soon-badge">Coming Soon</div>
+                <span class="chip warn">Coming Soon</span>
             </div>
         `;
         
@@ -495,14 +495,14 @@ class DynamicContentLoader {
             <div class="bar"></div>
             <div class="homework-card-header">
                 <h3>Homework ${hwNumber}</h3>
-                <span class="homework-number">HW${hwNumber}</span>
+                <span class="chip ok">HW${hwNumber}</span>
             </div>
             <div class="homework-card-content">
                 <div class="homework-info">
                     <h4>Topics Covered:</h4>
                     <p>This homework will be added soon.</p>
                 </div>
-                <div class="coming-soon-badge">Coming Soon</div>
+                <span class="chip warn">Coming Soon</span>
             </div>
         `;
         

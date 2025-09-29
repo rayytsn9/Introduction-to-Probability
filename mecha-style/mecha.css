@@ -62,6 +62,12 @@ background: linear-gradient(90deg, var(--accent-1), var(--accent-2) 40%, var(--a
 box-shadow: 0 0 6px var(--accent-2);
 }
 
+/* container & rhythm */
+.mecha-ui .container{max-width:1120px;margin:0 auto;padding:24px 18px}
+.mecha-ui section{margin-block:28px}
+.mecha-ui .stack > * + *{margin-top:14px}  /* add "stack" on wrappers */
+
+
 /* Headings */
 .mecha-ui h1, .mecha-ui h2, .mecha-ui h3 {
 margin: 0 0 8px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
@@ -73,14 +79,90 @@ margin: 0 0 8px; letter-spacing:.06em; text-transform:uppercase; font-weight:700
 font-family: var(--font-display);
 color: var(--text);font-size: 1.1rem; color: var(--dim);
 }
-/* .mecha-ui p {
+.mecha-ui p {
 color: var(--text);
 line-height: 1.5;
 margin: 0 0 1em;
 color: var(--dim);
-} */
+}
+
+.mecha-ui strong {
+    font-weight: 700;
+    color: var(--accent-2);   /* bright green highlight */
+    text-shadow: 0 0 6px rgba(0,255,123,.4);
+  }
+  
+.mecha-ui em {
+    font-style: italic;
+    color: var(--accent-1);   /* purple highlight for contrast */
+}
+
+/* Base list reset */
+.mecha-ui ul, .mecha-ui ol {
+    margin: 12px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+/* Custom bullets */
+.mecha-ui ul li {
+    margin: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.6;
+}
+.mecha-ui ul li::before {
+    content: "◆";  /* mech diamond glyph */
+    position: absolute;
+    left: 0;
+    color: var(--accent-1);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+  
+/* Ordered list (styled numbers) */
+.mecha-ui ol {
+    counter-reset: mech-step;
+}
+.mecha-ui ol li {
+    counter-increment: mech-step;
+    margin: 10px 0;
+    padding-left: 36px;
+    position: relative;
+    color: var(--text);   /* bright default text color */
+    line-height: 1.6;
+}
+.mecha-ui ol li::before {
+    content: counter(mech-step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    background: linear-gradient(180deg, var(--accent-2), #0bcf8a);
+    color: #07130d;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+  
+/* Unordered + ordered lists */
+.mecha-ui ul li {
+  color: var(--text);   /* bright default text color */
+  line-height: 1.6;
+}
+
+/* Optional: if you want a "secondary/dim list" style */
+.mecha-ui ul li.muted,
+.mecha-ui ol li.muted {
+  color: var(--dim);
+}
 
 
+
+/* Callouts (Question / Answer / Insight) */
 .mecha-ui .callout{
     background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35)), var(--panel);
     border:1px solid var(--line);
@@ -99,6 +181,49 @@ color: var(--dim);
 .mecha-ui .callout--warn::before{ background: linear-gradient(90deg, var(--lcl-orange), #ffb15a) }
   
 
+/* Definition / Theorem / Example boxes */
+.mecha-ui .note-box{
+  background: linear-gradient(180deg, #212a3b, #1a2030);
+  border:1px solid var(--line); border-radius:12px; padding:12px 14px;
+}
+.mecha-ui .note-box .title{
+  font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;
+}
+.mecha-ui .note-box.def .title{ color:var(--accent-1) }
+.mecha-ui .note-box.thm .title{ color:var(--accent-2) }
+.mecha-ui .note-box.ex  .title{ color:var(--lcl-orange) }
+
+/* Equation block with label */
+.mecha-ui .eq{
+    margin:16px 0; padding:14px; border:1px solid var(--line); border-radius:12px;
+    background: rgba(0,0,0,.18);
+    font-style: italic; font-size: 1.1rem;
+}
+.mecha-ui .eq .label{
+    float:right; font-style:normal; font-size:.85rem; color:var(--dim);
+}
+
+/* Numbered step list (for solution approach) */
+.mecha-ui .steps{ counter-reset: st; margin:12px 0; padding:0; list-style:none }
+.mecha-ui .steps li{
+  counter-increment: st; display:flex; gap:10px; align-items:flex-start; margin:10px 0;
+}
+.mecha-ui .steps li::before{
+  content: counter(st);
+  flex:0 0 28px; height:28px; display:grid; place-items:center;
+  border-radius:8px; border:1px solid var(--line);
+  background: linear-gradient(180deg, var(--accent-2), #0bcf8a);
+  color:#07130d; font-weight:800;
+}
+
+/* Sticky TOC side rail */
+.mecha-ui .toc{
+    position:sticky; top:80px; align-self:start;
+    border:1px solid var(--line); border-radius:12px; padding:10px; background:#0a0e16;
+}
+.mecha-ui .toc a{ display:block; padding:8px 10px; border-radius:8px; color:var(--dim); text-decoration:none }
+.mecha-ui .toc a:hover{ background:rgba(0,255,123,.08); color:var(--text) }
+.mecha-ui .toc a.active{ background:linear-gradient(180deg, var(--accent-2), #0affc7); color:#081015 }
 
 /* Text dimmer */
 .mecha-ui .muted, .mecha-ui small, .mecha-ui .help { color: var(--dim); }

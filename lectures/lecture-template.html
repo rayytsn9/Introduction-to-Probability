@@ -46,10 +46,16 @@
             <div class="bar"></div>
             <div class="lecture-header">
                 <h1 class="lecture-title">Lecture X: [Topic Title]</h1>
-                <p class="lecture-subtitle">[Brief description of lecture content]</p>
-                <div class="lecture-resources">
-                    <a href="LX.md" class="resource-link">Markdown Notes</a>
-                    <a href="Lecture_X.pdf" class="resource-link" target="_blank">PDF Version</a>
+                <div class="callout">
+                    <div class="k">Lecture Overview</div>
+                    <p>[Brief description of lecture content]</p>
+                </div>
+                <div class="callout callout--answer">
+                    <div class="k">Resources Available</div>
+                    <div class="lecture-resources">
+                        <a href="LX.md" class="resource-link btn">Markdown Notes</a>
+                        <a href="Lecture_X.pdf" class="resource-link btn" target="_blank">PDF Version</a>
+                    </div>
                 </div>
             </div>
             
@@ -60,20 +66,34 @@
                 <h2>Section Title</h2>
                 <p>Your content here...</p>
 
-                <div class="highlight-box panel">
-                    <div class="bar"></div>
-                    <h4>Important Note:</h4>
-                    <p>Use highlight-box for key concepts and important information.</p>
+                <div class="note-box def">
+                    <div class="title">Definition</div>
+                    <p>Use definition boxes for formal mathematical definitions and key terms.</p>
                 </div>
 
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>Example Title:</h4>
-                    <p>Use example-box for worked examples and detailed explanations.</p>
+                <div class="note-box thm">
+                    <div class="title">Theorem</div>
+                    <p>Use theorem boxes for important mathematical theorems and propositions.</p>
                 </div>
+
+                <div class="note-box ex">
+                    <div class="title">Example</div>
+                    <p>Use example boxes for worked examples and detailed explanations.</p>
+                </div>
+
+                <h3>Solution Steps</h3>
+                <ol class="steps">
+                    <li>Identify the problem and given information</li>
+                    <li>Apply the appropriate mathematical concept or formula</li>
+                    <li>Perform the necessary calculations</li>
+                    <li>Verify your answer and provide interpretation</li>
+                </ol>
 
                 <!-- Mathematical expressions -->
-                <p class="math">P(A) = 1/2</p>
+                <div class="eq">
+                    P(A) = 1/2
+                    <span class="label">(1)</span>
+                </div>
 
                 <hr class="separator">
 

@@ -47,60 +47,97 @@
             <div class="bar"></div>
             <div class="lecture-header">
                 <h1 class="lecture-title">Lecture 1: Probability Space</h1>
-                <p class="lecture-subtitle">Introduction to probability theory and Kolmogorov's axioms</p>
-                <div class="lecture-resources">
-                    <a href="L1.md" class="resource-link">Markdown Notes</a>
-                    <a href="Lecture_1.pdf" class="resource-link" target="_blank">PDF Version</a>
+                <div class="callout">
+                    <div class="k">Lecture Overview</div>
+                    <p>Introduction to probability theory and Kolmogorov's axioms</p>
+                </div>
+                <div class="callout callout--answer">
+                    <div class="k">Resources Available</div>
+                    <div class="lecture-resources">
+                        <a href="L1.md" class="resource-link btn">Markdown Notes</a>
+                        <a href="Lecture_1.pdf" class="resource-link btn" target="_blank">PDF Version</a>
+                    </div>
                 </div>
             </div>
             
             <div class="lecture-body">
                 <hr class="separator">
 
-                <h2>Motivating Example - Birthday Problem</h2>
+                <div class="row">
+                    <div class="toc">
+                        <h4>Table of Contents</h4>
+                        <a href="#motivating-example">Motivating Example</a>
+                        <a href="#solution-approach">Solution Approach</a>
+                        <a href="#assumptions">Assumptions</a>
+                        <a href="#calculation">Calculation</a>
+                        <a href="#answer">Answer</a>
+                        <a href="#key-insight">Key Insight</a>
+                    </div>
+                    <div style="flex: 1;">
+                        <h2 id="motivating-example">Motivating Example - Birthday Problem</h2>
                 
-                <div class="highlight-box panel">
-                    <div class="bar"></div>
-                    <h4>Question:</h4>
+                <div class="callout callout--warn">
+                    <div class="k">Question</div>
                     <p><strong>What is the minimum number of people needed in a group for there to be at least a 50% probability that two people share the same birthday?</strong></p>
                 </div>
 
-                <h3>Solution Approach</h3>
-                <p>Use complement probability: <span class="math">P(at least one shared birthday) = 1 - P(no shared birthdays)</span></p>
+                <h3 id="solution-approach">Solution Approach</h3>
+                <ol class="steps">
+                    <li>Use complement probability: P(at least one shared birthday) = 1 - P(no shared birthdays)</li>
+                    <li>Make assumptions: 365 days, equally likely birthdays, independent events</li>
+                    <li>Calculate P(no shared birthdays) for n people</li>
+                    <li>Find the minimum n where P(at least one shared) ≥ 0.5</li>
+                </ol>
 
-                <h3>Assumptions</h3>
+                <div class="eq">
+                    P(at least one shared birthday) = 1 - P(no shared birthdays)
+                    <span class="label">(1)</span>
+                </div>
+
+                <h3 id="assumptions">Assumptions</h3>
                 <ul>
                     <li>365 days in a year (ignoring leap years)</li>
                     <li>All birthdays are equally likely</li>
                     <li>Birthdays are independent</li>
                 </ul>
 
-                <h3>Calculation</h3>
+                <h3 id="calculation">Calculation</h3>
                 <p>For n people, the probability that no two share a birthday is:</p>
-                <p class="math">P(no shared) = (365/365) × (364/365) × (363/365) × ... × ((365-n+1)/365)</p>
+                <div class="eq">
+                    P(no shared) = (365/365) × (364/365) × (363/365) × ... × ((365-n+1)/365)
+                    <span class="label">(2)</span>
+                </div>
                 
                 <p>Therefore:</p>
-                <p class="math">P(at least one shared) = 1 - P(no shared)</p>
+                <div class="eq">
+                    P(at least one shared) = 1 - P(no shared)
+                    <span class="label">(3)</span>
+                </div>
 
-                <h3>Answer</h3>
-                <div class="highlight-box panel">
-                    <div class="bar"></div>
-                    <h4>The minimum number of people needed is <strong>23</strong>.</h4>
+                <h3 id="answer">Answer</h3>
+                <div class="callout callout--answer">
+                    <div class="k">Answer</div>
+                    <p>The minimum number of people needed is <strong>23</strong>.</p>
                     <p>At n = 23, the probability of at least one shared birthday is approximately <strong>50.73%</strong>.</p>
                 </div>
 
-                <h3>Key Insight</h3>
-                <p>This result is counterintuitive - most people guess much higher numbers (often 100+). The birthday problem demonstrates how quickly probabilities can accumulate with independent events.</p>
+                <h3 id="key-insight">Key Insight</h3>
+                <div class="callout">
+                    <div class="k">Key Insight</div>
+                    <p>This result is counterintuitive - most people guess much higher numbers (often 100+). The birthday problem demonstrates how quickly probabilities can accumulate with independent events.</p>
+                </div>
 
                 <hr class="separator">
 
                 <h2>Probability Space (Ω, F, P)</h2>
                 
-                <p>A <strong>probability space</strong> is a mathematical construct that provides a formal framework for probability theory. It consists of three components:</p>
+                <div class="note-box def">
+                    <div class="title">Definition</div>
+                    <p>A <strong>probability space</strong> is a mathematical construct that provides a formal framework for probability theory. It consists of three components:</p>
+                </div>
 
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>• Sample space (Ω):</h4>
+                <div class="callout">
+                    <div class="k">Sample space (Ω)</div>
                     <p>The set of all possible outcomes of a random experiment</p>
                     <ul>
                         <li>Example: For a coin flip, Ω = {H, T}</li>
@@ -108,9 +145,8 @@
                     </ul>
                 </div>
 
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>• Collection of events (F):</h4>
+                <div class="callout">
+                    <div class="k">Collection of events (F)</div>
                     <p>A σ-algebra (sigma-algebra) of subsets of Ω</p>
                     <ul>
                         <li>Contains all events we can assign probabilities to</li>
@@ -119,9 +155,8 @@
                     </ul>
                 </div>
 
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>• Probability measure (P):</h4>
+                <div class="callout">
+                    <div class="k">Probability measure (P)</div>
                     <p>A function P: F → [0,1] that assigns probabilities to events</p>
                     <ul>
                         <li>P(∅) = 0 (impossible event has probability 0)</li>
@@ -130,94 +165,85 @@
                     </ul>
                 </div>
 
-                <h3>Kolmogorov's Axioms (1933):</h3>
-                
-                <p>The probability measure P must satisfy these three axioms:</p>
-
-                <div class="highlight-box panel">
-                    <div class="bar"></div>
-                    <h4>i. Non-negativity:</h4>
-                    <p class="math">P(A) ≥ 0 for all events A ∈ F</p>
-                    
-                    <h4>ii. Normalization:</h4>
-                    <p class="math">P(Ω) = 1 (the probability of the sample space is 1)</p>
-                    
-                    <h4>iii. Countable additivity:</h4>
-                    <p>For any countable collection of mutually exclusive / disjoint events A₁, A₂, A₃, ... in F:</p>
-                    <p class="math">P(∪ᵢ₌₁^∞ Aᵢ) = Σᵢ₌₁^∞ P(Aᵢ)</p>
+                <div class="note-box thm">
+                    <div class="title">Kolmogorov's Axioms (1933)</div>
+                    <p>The probability measure P must satisfy these three axioms:</p>
+                    <div class="eq">
+                        P(A) ≥ 0 for all events A ∈ F
+                        <span class="label">(4)</span>
+                    </div>
+                    <div class="eq">
+                        P(Ω) = 1 (the probability of the sample space is 1)
+                        <span class="label">(5)</span>
+                    </div>
+                    <div class="eq">
+                        P(∪ᵢ₌₁^∞ Aᵢ) = Σᵢ₌₁^∞ P(Aᵢ)
+                        <span class="label">(6)</span>
+                    </div>
                 </div>
 
                 <h3>Key Properties Derived from the Axioms:</h3>
-                <ul>
-                    <li>P(∅) = 0</li>
+                <ol class="steps">
+                    <li>P(∅) = 0 (impossible event has probability 0)</li>
                     <li>P(Aᶜ) = 1 - P(A) (complement rule)</li>
                     <li>If A ⊆ B, then P(A) ≤ P(B) (monotonicity)</li>
                     <li>P(A ∪ B) = P(A) + P(B) - P(A ∩ B) (inclusion-exclusion principle)</li>
-                </ul>
+                </ol>
 
                 <hr class="separator">
 
-                <h2>Example 1 - Flipping a Fair Coin</h2>
-                
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>Probability space (Ω, F, P):</h4>
-                    
+                <div class="note-box ex">
+                    <div class="title">Example 1 - Flipping a Fair Coin</div>
                     <p><strong>• Sample space:</strong> Ω = {H, T} (Heads, Tails)</p>
-                    
                     <p><strong>• Collection of events:</strong> F = {∅, {H}, {T}, {H,T}} (all possible subsets)</p>
-                    
                     <p><strong>• Probability measure:</strong> P({H}) = 1/2, P({T}) = 1/2, P(∅) = 0, P({H,T}) = 1</p>
                 </div>
 
                 <p><strong>Kolmogorov's axioms are satisfied since:</strong></p>
-                <ul>
-                    <li><strong>i.</strong> P(A) ≥ 0 for all A ∈ F (all probabilities are non-negative)</li>
-                    <li><strong>ii.</strong> P(Ω) = P({H,T}) = 1 (probability of sample space is 1)</li>
-                    <li><strong>iii.</strong> For disjoint events, P(A ∪ B) = P(A) + P(B) (e.g., P({H} ∪ {T}) = P({H}) + P({T}) = 1/2 + 1/2 = 1)</li>
-                </ul>
+                <ol class="steps">
+                    <li>P(A) ≥ 0 for all A ∈ F (all probabilities are non-negative)</li>
+                    <li>P(Ω) = P({H,T}) = 1 (probability of sample space is 1)</li>
+                    <li>For disjoint events, P(A ∪ B) = P(A) + P(B) (e.g., P({H} ∪ {T}) = P({H}) + P({T}) = 1/2 + 1/2 = 1)</li>
+                </ol>
 
                 <hr class="separator">
 
-                <h2>Example 2 - Rolling a Standard Six-Sided Die</h2>
-                
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>Probability space (Ω, F, P):</h4>
-                    
+                <div class="note-box ex">
+                    <div class="title">Example 2 - Rolling a Standard Six-Sided Die</div>
                     <p><strong>• Sample space:</strong> Ω = {1, 2, 3, 4, 5, 6}</p>
-                    
                     <p><strong>• Collection of events:</strong> F = all possible subsets of Ω (2^6 = 64 subsets)</p>
-                    
                     <p><strong>• Probability measure:</strong> P({i}) = 1/6 for each i ∈ {1, 2, 3, 4, 5, 6}</p>
                 </div>
 
                 <p>A possible event in Ω is:</p>
                 <p><strong>A = {the outcome is divisible by 3} = {3, 6}</strong></p>
                 
-                <p class="math">P(A) = P({3, 6}) = P({3}) + P({6}) = 1/6 + 1/6 = 1/3</p>
+                <div class="eq">
+                    P(A) = P({3, 6}) = P({3}) + P({6}) = 1/6 + 1/6 = 1/3
+                    <span class="label">(7)</span>
+                </div>
 
                 <hr class="separator">
 
-                <h2>Example 3 - Flipping a Fair Coin Three Times</h2>
-                
-                <div class="example-box panel">
-                    <div class="bar"></div>
-                    <h4>Probability space (Ω, F, P):</h4>
-                    
+                <div class="note-box ex">
+                    <div class="title">Example 3 - Flipping a Fair Coin Three Times</div>
                     <p><strong>• Sample space:</strong> Ω = {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}</p>
-                    
                     <p><strong>• Collection of events:</strong> F = all possible subsets of Ω (2^8 = 256 subsets)</p>
-                    
                     <p><strong>• Probability measure:</strong> P({ω}) = 1/8 for each outcome ω ∈ Ω</p>
                 </div>
 
                 <p>A possible event in Ω is:</p>
                 <p><strong>A = {exactly two heads} = {HHT, HTH, THH}</strong></p>
                 
-                <p class="math">P(A) = P({HHT, HTH, THH}) = 3/8</p>
+                <div class="eq">
+                    P(A) = P({HHT, HTH, THH}) = 3/8
+                    <span class="label">(8)</span>
+                </div>
 
                 <hr class="separator">
+
+                    </div>
+                </div>
 
                 <div class="lecture-nav">
                     <a href="../../index.html" class="nav-button">
